@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <body
+background="https://img.freepik.com/free-photo/weathered-concrete-surface-wallpaper-backdrop_53876-124398.jpg?size=626&ext=jpg&ga=GA1.1.386372595.1697587200&semt=ais">
+    <h1>HERO Questionnaire</h1>
+    <form id="question-form">
+      <p>Take the self-test below to see if you may be showing signs of problematic drug use and/or other addictions.
+        Share the results with your doctor or a licensed mental health professional who is experienced in diagnosing and
+        treating substance use disorders.</p>
+      <p>Question 1: Have you been using drugs for a long time?</p>
+      <input type="radio" name="q1" value="1"> Yes
+      <input type="radio" name="q1" value="0"> No
+      <br><br>
+      <p>Question 2: Have you tried to cut down or quit using the drug, but found it difficult or impossible?</p>
+      <input type="radio" name="q2" value="1"> Yes
+      <input type="radio" name="q2" value="0"> No
+      <br><br>
+      <p>Question 3: Have you experienced withdrawal symptoms when you've tried to stop using the drug?</p>
+      <input type="radio" name="q3" value="1"> Yes
+      <input type="radio" name="q3" value="0"> No
+      <br><br>
+      <p>Question 4: Do you spend a significant amount of time obtaining, using, or recovering from the effects of the
+        drug?</p>
+      <input type="radio" name="q4" value="1"> Yes
+      <input type="radio" name="q4" value="0"> No
+      <br><br>
+      <p>Question 5: Has your drug use affected your relationships with family and friends, or caused problems at work
+        or
+        in other areas of your life? </p>
+      <input type="radio" name="q5" value="1"> Yes
+      <input type="radio" name="q5" value="0"> No
+      <br><br>
+      <p>Question 6: Have you continued to use the drug despite knowing that it's causing or worsening physical or
+        psychological problems? </p>
+      <input type="radio" name="q6" value="1"> Yes
+      <input type="radio" name="q6" value="0"> No
+      <br><br>
+      <p>Question 7: Have you experienced legal or financial issues as a result of your drug use? </p>
+      <input type="radio" name="q7" value="1"> Yes
+      <input type="radio" name="q7" value="0"> No
+      <br><br>
+      <button type="button" onclick="calculateScoreAndShowResult()">Submit</button>
+    </form>
+
+    <div id="result" style="display: none;">
+      <h2>Substance Abuse Level:</h2>
+      <p id="score">Your score is: <span id="score-value"></span></p>
+      <div id="link-container">
+        <a id="link" href="#">Continue</a>
+      </div>
+    </div>
+
+    <script>
+      function calculateScoreAndShowResult() {
+        const answers = document.forms['question-form'];
+        let score = 0;
+
+        for (let i = 0; i < answers.length - 1; i++) {
+          if (answers[i].checked) {
+            score += parseInt(answers[i].value);
+          }
+        }
+
+        const resultDiv = document.getElementById('result');
+        const scoreValue = document.getElementById('score-value');
+        const linkContainer = document.getElementById('link-container');
+        const link = document.getElementById('link');
+
+        resultDiv.style.display = 'block';
+        scoreValue.innerText = score;
+
+        // Defining thresholds for substance abuse levels
+        // If score is >= 5, it is high risk.
+
+
+        if (score >= 5) {
+          link.setAttribute('href', 'Recovery Plan.html'); // Replace with your desired URL
+          link.innerText = 'You have been identified as being at high risk. Click the link to access appropriate doctor recommendations.';
+        }
+        else {
+          link.setAttribute('href', "https://www.meetup.com/find/us--md--baltimore/sober-activities/"); // Replace with your desired URL
+          link.innerText = 'You fall into the low-risk category. Follow the link to view fun, sober activites in your area!';
+        }
+
+        linkContainer.style.display = 'block';
+      }
+        
+    </script>
+
+  </body>
+
+</html>
